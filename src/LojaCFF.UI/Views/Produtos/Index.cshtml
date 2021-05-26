@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ProdutoViewModel>
+
+@{
+    ViewBag.Title = "Listagens de Cursos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="mb-3">
+    <a href="~/Produtos/Add" class="btn btn-sm btn-outline-success">Novo Cadastro</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+
+       <h2>-----------TURMA 301------------</h2>
+<tr>
+                <th>Nome Do Aluno</th>
+                <th>Preço Total</th>
+                <th>Tipo de Linguagem</th>
+                <th>Qtde De Aulas</th>
+                <th>Data do Cadastro</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (ProdutoViewModel produto in Model)
+
+            {
+
+
+
+                <tr id="produto-@produto.Id">
+                    <td>@produto.Nome</td>
+                    <td>@produto.Preco.ToString("C2")</td>
+                    <td>@produto.TipoProduto</td>
+                    <td>@produto.Qtde</td>
+                    <td>@produto.DataCadastro</td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = produto.Id })" class="btn btn-sm btn-outline-warning"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-outline-danger" onclick="ExcluirProduto(@produto.Id,'@produto.Nome')"><i class="fas fa-trash-alt"></i> Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    function ExcluirProduto(id, nome) {
+        bootbox.confirm("Deseja excluir Aluno  " + nome + " da Turma:301 ?", function (result) {
+                    if (result) {
+                        DeleteProduto(id);
+                    }
+                });
+            }
+
+            function DeleteProduto(id) {
+                let xhr = new XMLHttpRequest();
+                const url = "/Produtos/Delete/" + id;
+
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status == 404) {
+                        toastr.error("Produto não encontrado!", "Falha");
+                    }
+
+                    if (this.readyState === 4 && this.status == 200) {
+                        //Remover do html
+                        let tr = document.querySelector("#produto-" + id);
+                        if (tr != null) {
+                            tr.remove();
+                        }
+
+                        //toastr.TIPO(mensagem, titulo);
+                        toastr.success("Aluno excluido com sucesso!", "Sucesso");
+                    }
+                }
+
+                xhr.open("get", url);
+                xhr.send();
+            }
+</script>

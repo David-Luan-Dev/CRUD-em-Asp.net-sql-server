@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- FontAwesome CSS -->
+    <link href="~/Content/fontawesome-all.min.css" rel="stylesheet" />
+    <!-- Toastr CSS -->
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
+    <!-- Meu CSS -->
+    <link href="~/Content/site.css" rel="stylesheet" />
+
+    <title>Cursos L@ViewBag.Title</title>
+</head>
+<body>
+
+    @Html.Partial("_menu")
+
+    <div class="container mt-3">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">&copy;@DateTime.Now.Year David Luan </span>
+        </div>
+    </footer>
+
+    <!-- bootstrap and dependency -->
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+    <!-- Toastr -->
+    <script src="~/Scripts/toastr.min.js"></script>
+
+    <!-- Bootbox -->
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/bootbox.locales.min.js"></script>
+
+    <!-- Nome sessão, se é obrigatorio em toas as views filhas -->
+    @RenderSection("scripts", false)
+
+</body>
+</html>

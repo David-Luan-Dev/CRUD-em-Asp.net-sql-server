@@ -1,0 +1,67 @@
+﻿@model ProdutoViewModel
+
+@{
+    ViewBag.Title = "Editar Produto";
+}
+
+<div class="row">
+    <div class="col-md">
+        @*One of three columns*@
+    </div>
+    <div class="col-md-6">
+        <h2>@ViewBag.Title</h2>
+
+        <form method="post">
+
+            <div class="form-group">
+                <label for="txtNome">Nome:</label>
+                @*<input type="text" class="form-control" name="Nome" id="txtNome" autofocus />*@
+                @Html.TextBoxFor(f => f.Nome, new { @class = "form-control", autofocus = "" })
+                <small>
+                    @Html.ValidationMessageFor(f => f.Nome, null, new { @class = "text-danger" })
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="txtPreco">Preço:</label>
+                @*<input type="text" class="form-control" name="Preco" id="txtPreco" autofocus />*@
+                @Html.TextBoxFor(f => f.Preco, new { @class = "form-control", autofocus = "" })
+                <small>
+                    @Html.ValidationMessageFor(f => f.Preco, null, new { @class = "text-danger" })
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="txtTipo">Tipo:</label>
+                @* Qual atributo, (fonte de dado,Quem vai aparecer o campo value, quem vai aparecer de text), atributos  *@
+                @Html.DropDownListFor(f => f.TipoProdutoId, new SelectList(ViewBag.Tipos, "Id", "Nome"), "Selecione ...", new { @class = "form-control" })
+                <small>
+                    @Html.ValidationMessageFor(f => f.TipoProdutoId, null, new { @class = "text-danger" })
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="txtQtde">Quantidade:</label>
+                @*<input type="number" class="form-control" name="Qtde" id="txtQtde" autofocus />*@
+                @Html.TextBoxFor(f => f.Qtde, new { @class = "form-control", autofocus = "" })
+                <small>
+                    @Html.ValidationMessageFor(f => f.Qtde, null, new { @class = "text-danger" })
+                </small>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-success">Salvar</button>
+                <a class="btn btn-outline-danger" href="@Url.Action("index")">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-md">
+        @*One of three columns*@
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

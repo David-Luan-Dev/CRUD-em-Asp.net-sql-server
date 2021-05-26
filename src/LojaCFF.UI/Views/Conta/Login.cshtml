@@ -1,0 +1,53 @@
+﻿@model  LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="row">
+    <div class="col-md">
+        @*One of three columns*@
+    </div>
+    <div class="col-md-6">
+        <h2>@ViewBag.Title</h2>
+
+        <form method="post">
+
+            <div class="form-group">
+                <label>Email:</label>
+                @Html.TextBoxFor(f => f.Email, new { @class = "form-control", autofocus = "" })
+                <small>
+                    @Html.ValidationMessageFor(f => f.Email, null, new { @class = "text-danger" })
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label>Senha:</label>
+                @Html.PasswordFor(f => f.Senha, new { @class = "form-control", autofocus = "" })
+                <small>
+                    @Html.ValidationMessageFor(f => f.Senha, null, new { @class = "text-danger" })
+                </small>
+            </div>
+
+            <div class="form-group">
+                @Html.CheckBoxFor(f => f.PermanecerLogado, new { @class = "form-check-input" })
+                <label>Permanecer Logado</label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-success">Login</button>
+                <a class="btn btn-outline-danger" href="@Url.Action("index","home")">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+    <div class="col-md">
+        @*One of three columns*@
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
